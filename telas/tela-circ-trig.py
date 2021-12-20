@@ -20,43 +20,19 @@ def trigonometrica():
     #pontoCirculo(x, y, valor)
     img.put("black", (xCentro, yCentro))
     
-    passosD = 0
-    passosU = 0
-    raio = int(str(raioEntrada.get()))
-    
-    if(raio % 2 == 0):
-        passosD = math.floor(raio + 1 / 2)
-        passosU = int((raio + 1) / 2) + int((raio + 1) % 2)
-    else:
-        passosD = math.floor(raio / 2)
-        passosU = int(raio / 2) + int(raio % 2)
-    
-    inc1 = 0
-    inc2 = passosU
-    
-    while(inc1 < passosD):
+    for i in range(46):
+        x = round(int(str(raioEntrada.get())) * math.cos(math.radians(i)))
+        y = round(int(str(raioEntrada.get())) * math.sin(math.radians(i)))
         
-        yAux1 = int(math.sqrt(raio * raio) - (inc1 * inc1))
-        yAux2 = int(math.sqrt(raio * raio) - (inc2 * inc2))
+        img.put("black", (xCentro - x, yCentro + y))
+        img.put("black", (xCentro + x, yCentro + y))
+        img.put("black", (xCentro + x, yCentro - y))
+        img.put("black", (xCentro - x, yCentro - y))
     
-        img.put("black", (xCentro - inc1, yCentro + yAux1))
-        img.put("black", (xCentro + inc1, yCentro + yAux1))
-        img.put("black", (xCentro + inc1, yCentro - yAux1))
-        img.put("black", (xCentro - inc1, yCentro - yAux1))
-    
-        img.put("black", (xCentro - yAux1, yCentro + inc1))
-        img.put("black", (xCentro + yAux1, yCentro + inc1))
-        img.put("black", (xCentro + yAux1, yCentro - inc1))
-        img.put("black", (xCentro - yAux1, yCentro - inc1))
-        
-        #print(f'-->{xCentro + inc2} -->{yCentro + yAux2}')
-        #img.put("black", (xCentro + inc2, yCentro + yAux2))
-        #img.put("black", (xCentro - inc2, yCentro + yAux2))
-        #img.put("black", (xCentro + inc2, yCentro - yAux2))
-       # img.put("black", (xCentro - inc2, yCentro - yAux2))
-        
-        inc1 += 1
-        inc2 += 1
+        img.put("black", (xCentro - y, yCentro + x))
+        img.put("black", (xCentro + y, yCentro + x))
+        img.put("black", (xCentro + y, yCentro - x))
+        img.put("black", (xCentro - y, yCentro - x))
         
  
 master = Tk()
