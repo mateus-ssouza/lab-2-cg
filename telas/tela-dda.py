@@ -31,7 +31,7 @@ def calculoDDA():
     
     dx = x1Aux - x0Aux
     dy = y1Aux - y0Aux
-    x = y0Aux
+    x = x0Aux
     y = y0Aux
     
     if(abs(dx) > abs(dy)):
@@ -39,12 +39,11 @@ def calculoDDA():
     else:
         steps = abs(dy)
     
-    xIncrement = dx / steps
-    yIncrement = dy / steps
+    xIncrement = float(dx) / float(steps)
+    yIncrement = float(dy) / float(steps)
     
     # Colocar um setPixel aqui. Colocando um print pra ver as coordenadas.
     img.put("black", (round(400 + x), round(400 - y)))
-    
     for k in range(steps):
         x = x + xIncrement
         y = y + yIncrement

@@ -40,7 +40,7 @@ def calculoPontoMedio():
     if(x0Aux > x1Aux):
         x = x1Aux
         y = y1Aux
-        x1Aux = 0
+        x1Aux = x0Aux
     else:
         x = x0Aux
         y = y0Aux
