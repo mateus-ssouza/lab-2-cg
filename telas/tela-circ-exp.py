@@ -16,23 +16,45 @@ def explicita():
     
     xCentro = 400 + int(xAux)
     yCentro = 400 - int(yAux)
+
+    passosD = 0
+    passosU = 0
+    raio = int(str(raioEntrada.get()))
     
-    #pontoCirculo(x, y, valor)
+    if(raio % 2 == 0):
+        passosD = raio + 1 // 2
+        passosU = int((raio + 1) / 2) + int((raio + 1) % 2)
+    else:
+        passosD = raio // 2
+        passosU = int(raio / 2) + int(raio % 2)
+    
+    inc1 = 0
+    inc2 = passosU
+    
     img.put("black", (xCentro, yCentro))
     
-    for i in range(46):
-        x = round(int(str(raioEntrada.get())) * math.cos(math.radians(i)))
-        y = round(int(str(raioEntrada.get())) * math.sin(math.radians(i)))
+    while(inc1 < passosD):
         
-        img.put("black", (xCentro - x, yCentro + y))
-        img.put("black", (xCentro + x, yCentro + y))
-        img.put("black", (xCentro + x, yCentro - y))
-        img.put("black", (xCentro - x, yCentro - y))
+        yAux1 = int(math.sqrt((raio * raio) - (inc1 * inc1)))
+        yAux2 = int(math.sqrt((raio * raio) - (inc2 * inc2)))
     
-        img.put("black", (xCentro - y, yCentro + x))
-        img.put("black", (xCentro + y, yCentro + x))
-        img.put("black", (xCentro + y, yCentro - x))
-        img.put("black", (xCentro - y, yCentro - x))
+        img.put("black", (xCentro - inc1, yCentro + yAux1))
+        img.put("black", (xCentro + inc1, yCentro + yAux1))
+        img.put("black", (xCentro + inc1, yCentro - yAux1))
+        img.put("black", (xCentro - inc1, yCentro - yAux1))
+    
+        img.put("black", (xCentro - yAux1, yCentro + inc1))
+        img.put("black", (xCentro + yAux1, yCentro + inc1))
+        img.put("black", (xCentro + yAux1, yCentro - inc1))
+        img.put("black", (xCentro - yAux1, yCentro - inc1))
+        
+        img.put("black", (xCentro + inc2, yCentro + yAux2))
+        img.put("black", (xCentro - inc2, yCentro + yAux2))
+        img.put("black", (xCentro + inc2, yCentro - yAux2))
+        img.put("black", (xCentro - inc2, yCentro - yAux2))
+        
+        inc1 += 1
+        inc2 += 1
         
  
 master = Tk()
