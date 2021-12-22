@@ -1,40 +1,7 @@
 from tkinter import *
-import math
+from circunferencia import Circunferencia
+    
 
-def trigonometrica():
-    
-    xAux = str(entradaX.get())
-    yAux = str(entradaY.get())
-    
-    if(xAux.find("-") != -1):
-        xAux = entradaX.get().replace("-", "")
-        xAux = int(xAux) * -1
-        
-    if(yAux.find("-") != -1):
-        yAux = entradaY.get().replace("-", "")
-        yAux = int(yAux) * -1
-    
-    xCentro = 400 + int(xAux)
-    yCentro = 400 - int(yAux)
-    
-    #pontoCirculo(x, y, valor)
-    img.put("black", (xCentro, yCentro))
-    
-    for i in range(46):
-        x = round(int(str(raioEntrada.get())) * math.cos(math.radians(i)))
-        y = round(int(str(raioEntrada.get())) * math.sin(math.radians(i)))
-        
-        img.put("black", (xCentro - x, yCentro + y))
-        img.put("black", (xCentro + x, yCentro + y))
-        img.put("black", (xCentro + x, yCentro - y))
-        img.put("black", (xCentro - x, yCentro - y))
-    
-        img.put("black", (xCentro - y, yCentro + x))
-        img.put("black", (xCentro + y, yCentro + x))
-        img.put("black", (xCentro + y, yCentro - x))
-        img.put("black", (xCentro - y, yCentro - x))
-        
- 
 master = Tk()
 
 #Tamanho da tela padrao
@@ -53,11 +20,13 @@ master.wm_resizable(width=False, height=False)  # travando a tela na resolução
 canvas = Canvas(master, width=canvasSizeX, height=canvasSizeY, bg="white")
 canvas.pack(side="bottom")
 
+
+
 # colocar o pixel como imagem
 img = PhotoImage(width=screen_width, height=screen_height)
+
 canvas.create_image((screen_width / 2, screen_height / 2), image=img, state="normal")  # normal, disabled or hidden
 
-# criando plano cartesiano
 
 #Linha Horizontal
 for i in range(canvasSizeX):
@@ -82,27 +51,19 @@ msg_plano = Label(coordenadas_plano_cartesiano, text=f"Coordenadas do plano X:{0
 msg_plano["font"] = ("Verdana", "10", "italic", "bold")
 msg_plano.pack()
 
-lb_x = Label(master, text="X:")
-lb_x.place(x=100, y=30)
+# Importando os metodos da classe circunferencia
+tela_circunferencia = Circunferencia()
+tela_circunferencia.mostrar_paramentros(master,img)
 
-entradaX = Entry(master)
-entradaX.place(x=130, y=30, width=50)
+#combobox com as opções de algoritmos
+tela_circunferencia.combobox_algoritmos(master)
 
-lb_y = Label(master, text="Y:")
-lb_y.place(x=100, y=60)
-
-entradaY = Entry(master)
-entradaY.place(x=130, y=60, width=50)
-
-lb_raio = Label(master, text="RAIO:")
-lb_raio.place(x=100, y=90)
-
-raioEntrada = Entry(master)
-raioEntrada.place(x=140, y=90, width=50)
-
-btnDesenhar = Button(master, text='Desenhar', command=trigonometrica)
+# Definindo qual algoritmo ira desenhar na teal
+btnDesenhar = Button(master, text='Desenhar', command=tela_circunferencia.execute_algoritmo)
 btnDesenhar["font"] = ("Verdana", "10", "italic", "bold")
 btnDesenhar.place(x=100, y=150)
+   
+
 
 def button(event):
     """ Função responsável por mostrar as coordenadas e marca o pixel selecionado.Além de mostrar todos
@@ -117,7 +78,7 @@ def button(event):
     msg.configure(text=f'Coordenadas da tela X:{x} | Y: {y}')
     msg_plano.configure(
         text=f'Coordenadas do plano X:{x_plano} | Y: {y_plano}')
-
+    
 if __name__ == "__main__":
     canvas.bind('<Button>', button)
     master.mainloop()
