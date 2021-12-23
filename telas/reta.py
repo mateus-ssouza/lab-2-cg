@@ -142,12 +142,15 @@ class Reta:
     
 
     def execute_algoritmo(self):
-        if self.algoritmo.get() == 'DDA':
-            return self.calculoDDA()
-        elif self.algoritmo.get() == 'Ponto Médio':
-            return self.calculoPontoMedio()
+        if int(self.entradaX0.get()) < 0 or int(self.entradaX1.get()) < 0:
+            print('Não é possível plota retas para paramentros negativos') # colocar um aviso 
         else:
-            print('Opção inválida')
+            if self.algoritmo.get() == 'DDA':
+                return self.calculoDDA()
+            elif self.algoritmo.get() == 'Ponto Médio':
+                return self.calculoPontoMedio()
+            else:
+                print('Opção inválida')
 
 
     def combobox_algoritmos(self,master):

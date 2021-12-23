@@ -64,7 +64,6 @@ btnDesenhar["font"] = ("Verdana", "10", "italic", "bold")
 btnDesenhar.place(x=100, y=150)
    
 
-
 def button(event):
     """ Função responsável por mostrar as coordenadas e marca o pixel selecionado.Além de mostrar todos
         as transformoções em containers separados """
