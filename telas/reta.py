@@ -142,7 +142,7 @@ class Reta:
     
 
     def execute_algoritmo(self):
-        if int(self.entradaX0.get()) < 0 or int(self.entradaX1.get()) < 0:
+        if int(self.entradaX0.get()) < 0 or int(self.entradaX1.get()) < 0 or int(self.entradaY0.get()) or int(self.entradaY1.get()):
             print('Não é possível plota retas para paramentros negativos') # colocar um aviso 
         else:
             if self.algoritmo.get() == 'DDA':
