@@ -48,24 +48,24 @@ class Circunferencia:
         xCentro = 400 + int(xAux)
         yCentro = 400 - int(yAux)
 
-        passosD = 0
-        passosU = 0
+        passoX = 0
+        passoY = 0
         raio = int(str(self.raio.get()))
         
         if(raio % 2 == 0):
-            passosD = raio + 1 // 2
-            passosU = int((raio + 1) / 2) + int((raio + 1) % 2)
+            passoX = raio + 1 // 2
+            passoY = int((raio + 1) / 2) + int((raio + 1) % 2)
         else:
-            passosD = raio // 2
-            passosU = int(raio / 2) + int(raio % 2)
+            passoX = raio // 2
+            passoY = int(raio / 2) + int(raio % 2)
         
         inc1 = 0
-        inc2 = passosU
+        inc2 = passoY
         
         self.img.put("black", (xCentro, yCentro))
         
-        while(inc1 < passosD):
-            #print((raio * raio) - (inc2 * inc2))
+        while(inc1 < passoX):
+            
             yAux1 = int(math.sqrt((raio * raio) - (inc1 * inc1)))
             yAux2 = int(math.sqrt((raio * raio) - (inc2 * inc2)))
         
@@ -108,7 +108,6 @@ class Circunferencia:
         xCentro = 400 + int(xAux)
         yCentro = 400 - int(yAux)
         
-        #pontoCirculo(x, y, valor)
         self.img.put("black", (xCentro, yCentro))
         
         while(y > x):
@@ -118,7 +117,7 @@ class Circunferencia:
                 d = d + 2 * (x - y) + 5
                 y = y - 1
             x = x + 1
-            #pontoCirculo(x, y, valor) 
+    
             self.img.put("black", (xCentro - x, yCentro + y))
             self.img.put("black", (xCentro + x, yCentro + y))
             self.img.put("black", (xCentro + x, yCentro - y))
@@ -147,7 +146,6 @@ class Circunferencia:
         xCentro = 400 + int(xAux)
         yCentro = 400 - int(yAux)
         
-        #pontoCirculo(x, y, valor)
         self.img.put("black", (xCentro, yCentro))
         
         for i in range(46):

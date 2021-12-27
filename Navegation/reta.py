@@ -1,5 +1,5 @@
 import math
-from tkinter import Label, Entry, StringVar, OptionMenu, Button
+from tkinter import *
 
 class Reta:
     entradaX0 = None
@@ -7,7 +7,9 @@ class Reta:
     entradaX1 = None
     entradaY1 = None
     img = None
+    canvas = None
     algoritmo = 'DDA'
+    length = 0
 
     def mostrar_paramentros(self, master, img):
 
@@ -37,7 +39,7 @@ class Reta:
         self.entradaY1.place(x=230, y=70, width=50)
 
 
-    def calculoDDA(self):
+    def calculoDDA(self,label):
         x0Aux = str(self.entradaX0.get())
         y0Aux = str(self.entradaY0.get())
         x1Aux = str(self.entradaX1.get())
@@ -77,16 +79,21 @@ class Reta:
         xIncrement = float(dx) / float(steps)
         yIncrement = float(dy) / float(steps)
         
-        # Colocar um setPixel aqui. Colocando um print pra ver as coordenadas.
         self.img.put("black", (round(400 + x), round(400 - y)))
+
         for k in range(steps):
             x = x + xIncrement
             y = y + yIncrement
-        # Colocar um setPixel aqui. Colocando um print pra ver as coordenadas.
-            self.img.put("black", (round(400 + x), round(400 - y)))
-    
 
-    def calculoPontoMedio(self):
+            self.img.put("black", (round(400 + x), round(400 - y)))
+            self.length += 1
+        label.config(text=f"Length: {self.length}  Xinc: {round(xIncrement,2)}  YInc: {round(yIncrement,4)}")
+        self.length = 0
+        label.pack()
+
+
+
+    def calculoPontoMedio(self,label):
         x0Aux = str(self.entradaX0.get())
         y0Aux = str(self.entradaY0.get())
         x1Aux = str(self.entradaX1.get())
@@ -139,16 +146,22 @@ class Reta:
                 print(f'P={p} X={x} Y={y}')
                 p = p + incNE
             self.img.put("black", (round(400 + x), round(400 - y)))
-    
+            self.length+=1
 
-    def execute_algoritmo(self):
+        label.config(text=f"Length: {self.length}  IncE: {incE}  IncNE: {incNE}  DX: {dx}  DY: {dy}")
+        self.length=0
+        label.pack()
+
+    def execute_algoritmo(self,label):
+
         if int(self.entradaX0.get()) < 0 or int(self.entradaX1.get()) < 0 or int(self.entradaY0.get()) < 0 or int(self.entradaY1.get()) < 0:
             print('Não é possível plota retas para paramentros negativos') # colocar um aviso 
         else:
             if self.algoritmo.get() == 'DDA':
-                return self.calculoDDA()
+
+                return self.calculoDDA(label)
             elif self.algoritmo.get() == 'Ponto Médio':
-                return self.calculoPontoMedio()
+                return self.calculoPontoMedio(label)
             else:
                 print('Opção inválida')
 

@@ -46,27 +46,25 @@ class TelaReta:
         self.img = PhotoImage(width=screen_width, height=screen_height)
         self.drawnScreen(canvas)
 
+        reta = Reta()
 
-        # criando a caixinha q mostra as coordenadas
-        widget1 = Frame(self.master)
-        widget1.place(bordermode=OUTSIDE, height=20, width=300, x=50)
-        msg = Label(widget1, text=f"Coordenadas da tela X:{0} | Y: {0}")
-        msg["font"] = ("Verdana", "10", "italic", "bold")
-        msg.pack()
+
 
         # Container para mostrar todas as coordenadas do plano
         coordenadas_plano_cartesiano = Frame(self.master)
         coordenadas_plano_cartesiano.place(bordermode=OUTSIDE, height=20, width=400, x=450)
-        msg_plano = Label(coordenadas_plano_cartesiano, text=f"Coordenadas do plano X:{0} | Y: {0}")
+        msg_plano = Label(coordenadas_plano_cartesiano,
+                          text=f"Length: {reta.length}  Xinc: {0}  YInc: {0}")
         msg_plano["font"] = ("Verdana", "10", "italic", "bold")
         msg_plano.pack()
 
-        reta = Reta()
+
+
 
         reta.mostrar_paramentros(self.master,self.img)
         reta.combobox_algoritmos(self.master)
 
-        btnDesenhar = Button(self.master, text='Desenhar', command=reta.execute_algoritmo)
+        btnDesenhar = Button(self.master, text='Desenhar', command=lambda: [reta.execute_algoritmo(msg_plano)])
         btnDesenhar["font"] = ("Verdana", "10", "italic", "bold")
         btnDesenhar.place(x=100, y=150)
 
@@ -74,6 +72,7 @@ class TelaReta:
 
         btnApagar["font"] = ("Verdana", "10", "italic", "bold")
         btnApagar.place(x=800, y=150)
+
 
     def drawnScreen(self,canvas):
         # colocar o pixel como imagem
