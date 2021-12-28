@@ -98,6 +98,8 @@ class Circunferencia:
         
         count = 0 
         while(y > x):
+            linha = self.treev.get_children()[count]
+            self.treev.item(linha, text="blub", values=(xCentro + x-400, yCentro + y-400,xCentro + y-400,yCentro + x-400,xCentro + y-400,yCentro - x-400,xCentro + x-400,yCentro - y-400,xCentro - x-400,yCentro - y-400,xCentro - y-400,yCentro - x-400,xCentro - y-400, yCentro + x-400,xCentro - x-400,yCentro + y-400))
             if(d < 0): #ESCOLHE E
                 d = d + 2 * x + 3 
             else: #ESCOLHE NE
@@ -114,8 +116,7 @@ class Circunferencia:
             self.img.put("black", (xCentro + y, yCentro + x))
             self.img.put("black", (xCentro + y, yCentro - x))
             self.img.put("black", (xCentro - y, yCentro - x))
-            linha = self.treev.get_children()[count]
-            self.treev.item(linha, text="blub", values=(xCentro + x-400, yCentro + y-400,xCentro + y-400,yCentro + x-400,xCentro + y-400,yCentro - x-400,xCentro + x-400,yCentro - y-400,xCentro - x-400,yCentro - y-400,xCentro - y-400,yCentro - x-400,xCentro - y-400, yCentro + x-400,xCentro - x-400,yCentro + y-400))
+            
             count += 1 
 
     def trigonometrica(self):
@@ -152,7 +153,9 @@ class Circunferencia:
             self.img.put("black", (xCentro - y, yCentro - x)) #X5 Y5
             
             linha = self.treev.get_children()[i]
-            self.treev.item(linha, text="blub", values=(xCentro + x-400, yCentro + y-400,xCentro + y-400,yCentro + x-400,xCentro + y-400,yCentro - x-400,xCentro + x-400,yCentro - y-400,xCentro - x-400,yCentro - y-400,xCentro - y-400,yCentro - x-400,xCentro - y-400, yCentro + x-400,xCentro - x-400,yCentro + y-400))
+            self.treev.item(linha, text="blub", values=(xCentro + x - 400, (yCentro + y - 400)*-1, xCentro + y - 400, (yCentro - x - 400)*-1, xCentro + y - 400, 
+                            (yCentro + x - 400)*-1, xCentro + x - 400, (yCentro - y - 400)*-1, xCentro - x - 400, (yCentro - y - 400)*-1, xCentro - y - 400, 
+                            (yCentro + x - 400)*-1, xCentro - y - 400, (yCentro - x - 400)*-1, xCentro - x - 400, (yCentro + y - 400)*-1))
 
     def combobox_algoritmos(self,master):
         """ Método responsável por criar o combobox de algoritmos. """
@@ -265,7 +268,7 @@ class Circunferencia:
         self.treev.heading("14", text ="Y6")
         self.treev.heading("15", text ="X7")
         self.treev.heading("16", text ="Y7")
-        #self.treev.heading("9", text ="D")
+        #self.treev.heading("17", text ="D")
 
         for i in range(401):
             self.treev.insert("", i, text =f"L{i+1}",values =("0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0"))

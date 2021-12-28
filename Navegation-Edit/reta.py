@@ -93,7 +93,7 @@ class Reta:
             self.length += 1
 
         self.length -= 1
-        label.config(text=f"Length: {self.length}  Xinc: {round(xIncrement,2)}  YInc: {round(yIncrement,4)}")
+        label.config(text=f"Length: {self.length}  Xinc: {round(xIncrement,2)}  Yinc: {round(yIncrement,4)}")
         self.length = 0
         label.pack()
 
@@ -195,7 +195,6 @@ class Reta:
             print('Não é possível plota retas para paramentros negativos') # colocar um aviso 
         else:
             if self.algoritmo.get() == 'DDA':
-
                 return self.calculoDDA(label)
             elif self.algoritmo.get() == 'Ponto Médio':
                 return self.calculoPontoMedio(label)
