@@ -6,6 +6,8 @@ class Reta:
     entradaY0 = None
     entradaX1 = None
     entradaY1 = None
+
+    treev = None
     img = None
     canvas = None
     length = 0

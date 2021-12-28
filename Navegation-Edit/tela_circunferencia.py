@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import ttk 
 from circunferencia import Circunferencia
     
 
@@ -8,6 +9,7 @@ class TelaCircunferencia:
     screen_width = 1000
     screen_height = 1000
     img = None
+    treev = None
 
     canvasSizeX = 800
     canvasSizeY = 800
@@ -16,7 +18,6 @@ class TelaCircunferencia:
         self.master = Toplevel(master)
         self.renderScreen()
 
-    #Tamanho da tela padrao
 
     def renderScreen(self):
 
@@ -51,12 +52,11 @@ class TelaCircunferencia:
 
         # Importando os metodos da classe circunferencia
         tela_circunferencia = Circunferencia()
-        tela_circunferencia.mostrar_paramentros(self.master,self.img)
+        tela_circunferencia.mostrar_paramentros(self.master,self.img,self.treev)
 
         #combobox com as opções de algoritmos
-        tela_circunferencia.combobox_algoritmos(self.master)
-
-        # Definindo qual algoritmo ira desenhar na teal
+        algoritmo = tela_circunferencia.combobox_algoritmos(self.master)
+        
         btnDesenhar = Button(self.master, text='Desenhar', command=tela_circunferencia.execute_algoritmo)
         btnDesenhar["font"] = ("Verdana", "10", "italic", "bold")
         btnDesenhar.place(x=100, y=150)
@@ -71,11 +71,12 @@ class TelaCircunferencia:
 
     def drawnScreen(self,canvas):
         # colocar o pixel como imagem
-        
+
         self.img.blank()
 
         canvas.create_image((self.screen_width / 2, self.screen_height / 2), image=self.img,
                             state="normal")
+
 
         # criando plano cartesiano
 
@@ -87,3 +88,4 @@ class TelaCircunferencia:
         for i in range(self.canvasSizeY):
             self.img.put("black", (int(self.canvasSizeX / 2), int(0 + i)))
 
+    
