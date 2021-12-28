@@ -17,9 +17,9 @@ class TelaCircunferencia:
         self.master = Toplevel(master)
         self.renderScreen()
 
-
+    """ Função responsável por redenrizar a tela de circunferência """
     def renderScreen(self):
-        self.master.title('Projeto 2')
+        self.master.title('Circunferências')
 
         self.master.geometry("%dx%d+0+0" % (self.screen_width, self.screen_height))  # largura, altura, dist esquerda + dist topo
         self.master.wm_resizable(width=False, height=False)  # travando a tela na resolução definida
@@ -31,13 +31,14 @@ class TelaCircunferencia:
         # colocar o pixel como imagem
         self.img = PhotoImage(width=self.screen_width, height=self.screen_height)
         
+        # Container para mostrar onde irá fica os parâmetros
         widget1 = Frame(self.master)
         widget1.place(bordermode=OUTSIDE, height=20, width=300, x=20)
         msg = Label(widget1, text="Parâmetros")
         msg["font"] = ("Verdana", "10", "italic", "bold")
         msg.pack()
 
-        # Container para mostrar onde irá ficar a tabela
+        # Container para mostrar onde irá fica a tabela
         label_titulo = Frame(self.master)
         label_titulo.place(bordermode=OUTSIDE, height=20, width=400, x=380)
         msg_tabela = Label(label_titulo, text=f"Tabela de variação")
@@ -52,13 +53,14 @@ class TelaCircunferencia:
         self.tela_circunferencia.combobox_algoritmos(self.master)
         
         self.drawnScreen(canvas)
-
+        
+        # Botão para executar o desenho
         btnDesenhar = Button(self.master, text='Desenhar', command=self.tela_circunferencia.execute_algoritmo)
         btnDesenhar["font"] = ("Verdana", "10", "italic", "bold")
         btnDesenhar.place(x=100, y=150)
 
+        # Botão para executar a limpeza de dos dados e da tela
         btnApagar = Button(self.master,text="Apagar",command=lambda:[self.drawnScreen(canvas)] )
-
         btnApagar["font"] = ("Verdana", "10", "italic", "bold")
         btnApagar.place(x=800, y=150)
 

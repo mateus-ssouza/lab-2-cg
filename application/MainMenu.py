@@ -3,12 +3,11 @@ from tkinter import *
 from tela_circunferencia import *
 from tela_reta import *
 
-
+""" Função para redenrizar tela da reta"""
 def renderReta():
     tr = TelaReta(master)
 
-
-
+""" Função para redenrizar tela da circunferência"""
 def renderCircunferencia():
     tr = TelaCircunferencia(master)
 

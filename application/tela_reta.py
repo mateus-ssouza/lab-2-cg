@@ -22,9 +22,7 @@ class TelaReta:
         self.table()
         self.renderScreen()
 
-
-    #Tamanho da tela padrao
-
+    """ Função responsável por redenrizar a tela de retas """
     def renderScreen(self):
         screen_width = 1000
         screen_height = 1000
@@ -32,13 +30,12 @@ class TelaReta:
         canvasSizeX = 800
         canvasSizeY = 800
 
-        self.master.title('Projeto 2')
+        self.master.title('Retas')
 
         self.master.geometry("%dx%d+0+0" % (screen_width, screen_height))  # largura, altura, dist esquerda + dist topo
         self.master.wm_resizable(width=False, height=False)  # travando a tela na resolução definida
 
         # colocando a img de fundo e especificando a posição dela na tela
-
         canvas = Canvas(self.master, width=canvasSizeX, height=canvasSizeY, bg="white")
         canvas.pack(side="bottom")
         self.canvas= canvas
@@ -49,6 +46,7 @@ class TelaReta:
 
         reta = Reta()
         
+        # Container para mostrar onde irá fica os parâmetros
         widget1 = Frame(self.master)
         widget1.place(bordermode=OUTSIDE, height=20, width=300, x=50)
         msg = Label(widget1, text="Parâmetros")
@@ -63,20 +61,25 @@ class TelaReta:
         msg_reta["font"] = ("Verdana", "10", "italic", "bold")
         msg_reta.pack()
         
+        # Mostrar as entradas dos parâmetros
         reta.mostrar_paramentros(self.master,self.img,self.treev)
+        
+        #combobox com as opções de algoritmos
         reta.combobox_algoritmos(self.master)
 
+        # Botão para executar o desenho
         btnDesenhar = Button(self.master, text='Desenhar', command=lambda:[reta.execute_algoritmo(msg_reta)])
         btnDesenhar["font"] = ("Verdana", "10", "italic", "bold")
         btnDesenhar.place(x=100, y=150)
 
+        # Botão para executar a limpeza de dos dados e da tela
         btnApagar = Button(self.master, text="Apagar", command=lambda: [self.drawnScreen(canvas)])
         btnApagar["font"] = ("Verdana", "10", "italic", "bold")
         btnApagar.place(x=800, y=150)
        
     def drawnScreen(self,canvas):
-        # colocar o pixel como imagem
-
+        
+        # Inserir dados padrões na tabela
         linhas = self.treev.get_children()
         for item in linhas: 
             self.treev.item(item, text="blub", values=("-", "-", "-"))
@@ -96,6 +99,7 @@ class TelaReta:
             self.img.put("black", (int(self.canvasSizeX / 2), int(0 + i)))
 
 
+    """ Função para gerar tabela de dados relacionado a reta """
     def table(self):
         widgetTest = Frame(self.master)
         widgetTest.configure(bg="white")
@@ -120,6 +124,7 @@ class TelaReta:
         self.treev.heading("2", text ="X")
         self.treev.heading("3", text ="Y")
 
+        """ Inicializando a tabela com valores padrões """
         for i in range(401):
             self.treev.insert("", i, text =f"L{i+1}",values =("0","0","0")) 
         
