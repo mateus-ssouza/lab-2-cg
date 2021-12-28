@@ -160,29 +160,35 @@ class Circunferencia:
         
         """ Plot incial """
         self.img.put("black", (xCentro, yCentro))
-        
-        """ Laço para variações dos dados """
-        for i in range(46):
-            x = round(int(str(self.raio.get())) * math.cos(math.radians(i)))
-            y = round(int(str(self.raio.get())) * math.sin(math.radians(i)))
-            
-            """ Gerar os pixels na tela """
-            self.img.put("black", (xCentro - x, yCentro + y)) 
-            self.img.put("black", (xCentro + x, yCentro + y)) 
-            self.img.put("black", (xCentro + x, yCentro - y)) 
-            self.img.put("black", (xCentro - x, yCentro - y)) 
-        
-            self.img.put("black", (xCentro - y, yCentro + x)) 
-            self.img.put("black", (xCentro + y, yCentro + x)) 
-            self.img.put("black", (xCentro + y, yCentro - x)) 
-            self.img.put("black", (xCentro - y, yCentro - x)) 
-            
-            """ Inserção de dados na tabela """
-            linha = self.treev.get_children()[i]
-            self.treev.item(linha, text="blub", values=("-",xCentro + x - 400, (yCentro - y - 400)*-1, xCentro + y - 400, (yCentro - x - 400)*-1, xCentro + y - 400, 
-                            (yCentro + x - 400)*-1, xCentro + x - 400, (yCentro - y - 400)*-1, xCentro - x - 400, (yCentro - y - 400)*-1, xCentro - y - 400, 
-                            (yCentro + x - 400)*-1, xCentro - y - 400, (yCentro - x - 400)*-1, xCentro - x - 400, (yCentro - y - 400)*-1))
 
+        raio = int(str(self.raio.get()))
+        
+
+        if(raio > 0):
+            """ Laço para variações dos dados """
+            for i in range(46):
+                x = round(int(str(self.raio.get())) * math.cos(math.radians(i)))
+                y = round(int(str(self.raio.get())) * math.sin(math.radians(i)))
+            
+                """ Gerar os pixels na tela """
+                self.img.put("black", (xCentro - x, yCentro + y)) 
+                self.img.put("black", (xCentro + x, yCentro + y)) 
+                self.img.put("black", (xCentro + x, yCentro - y)) 
+                self.img.put("black", (xCentro - x, yCentro - y)) 
+        
+                self.img.put("black", (xCentro - y, yCentro + x)) 
+                self.img.put("black", (xCentro + y, yCentro + x)) 
+                self.img.put("black", (xCentro + y, yCentro - x)) 
+                self.img.put("black", (xCentro - y, yCentro - x)) 
+            
+                """ Inserção de dados na tabela """
+                linha = self.treev.get_children()[i]
+                self.treev.item(linha, text="blub", values=("-",xCentro + x - 400, (yCentro - y - 400)*-1, xCentro + y - 400, (yCentro - x - 400)*-1, xCentro + y - 400, 
+                                (yCentro + x - 400)*-1, xCentro + x - 400, (yCentro - y - 400)*-1, xCentro - x - 400, (yCentro - y - 400)*-1, xCentro - y - 400, 
+                                (yCentro + x - 400)*-1, xCentro - y - 400, (yCentro - x - 400)*-1, xCentro - x - 400, (yCentro - y - 400)*-1))
+        else:
+            print("Raio negativo! - O algoritmo não pode ser executado.")
+    
     def combobox_algoritmos(self,master):
         """ Método responsável por criar o combobox de algoritmos. """
         
